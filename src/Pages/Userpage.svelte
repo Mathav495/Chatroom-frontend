@@ -23,7 +23,15 @@
       errorjoin = "Enter the correct chatroom name"
       console.log(errorjoin)
     } else {
-      show = false
+      const { data } = await axios.get(
+        `http://localhost:5000/api/roomlist/${joinroom}`
+      )
+      if (data == "Data not existed") {
+        errorjoin = "Group not created"
+      } else {
+        show = false
+        errorjoin = ""
+      }
     }
   }
 

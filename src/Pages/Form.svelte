@@ -1,35 +1,37 @@
 <script>
   import axios from "axios"
   import { createEventDispatcher } from "svelte"
+  import ChitChat from "../components/ChitChat.svelte"
+  import ChitChatsm from "../components/ChitChatsm.svelte"
   const dispatch = createEventDispatcher()
   let username,
     usercolor,
-    disabled = false
+    disabled = false,
+    error = ""
 
   const adduserdata = async () => {
-    const sample = {
-      user: username,
-      color: usercolor,
+    if (username == null) {
+      error = "Username cannot be empty"
+    } else {
+      const sample = {
+        user: username,
+        color: usercolor,
+      }
+      const { data } = await axios.post(
+        "http://localhost:5000/api/users",
+        sample
+      )
+      console.log(data)
+      dispatch("transfer", data)
+      username = ""
     }
-    const { data } = await axios.post("http://localhost:5000/api/users", sample)
-    console.log(data)
-    dispatch("transfer", data)
-    username = ""
   }
 </script>
 
 <div class="background h-screen w-screen overflow-x-hidden">
   <div
-    class="mt-0 flex  flex-col gap-2 p-8 md:mt-12 md:flex-row lg:mt-20 lg:gap-24 lg:p-10">
-    <div class="flex items-center gap-4 p-5 text-center md:hidden">
-      <img
-        class="mt-4 ml-10 h-16 w-16 rounded-lg  opacity-75"
-        src="/assets/chat.png"
-        alt="logo" />
-      <h1 class="mt-3 font-mono text-4xl font-semibold text-white">
-        Chit Chat
-      </h1>
-    </div>
+    class="mt-0 flex  flex-col gap-2 p-6 md:mt-12 md:flex-row md:p-8 lg:mt-20 lg:gap-24 lg:p-10">
+    <ChitChatsm />
 
     <div
       class="w-full rounded-lg bg-slate-200 p-5 opacity-90 md:w-1/2 lg:w-1/3">
@@ -41,8 +43,8 @@
           bind:value={username}
           type="text"
           id="user"
-          class="mt-2 mb-4  w-full  rounded border border-gray-300 bg-white py-1 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
-
+          class="mt-2 mb-1  w-full  rounded border border-gray-300 bg-white py-1 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
+        <h1 class="text-base font-semibold text-rose-500">{error}</h1>
         <label for="Color" class="text-xl font-semibold text-slate-800"
           >Color</label>
         <select
@@ -74,20 +76,7 @@
       </form>
     </div>
 
-    <div class="hidden w-1/2 flex-col p-5 md:flex">
-      <img
-        class="mb-4 h-36  w-36 opacity-75 md:ml-36 lg:ml-64"
-        src="/assets/chat.png"
-        alt="logo" />
-      <h1 class=" text-center font-mono text-7xl font-semibold text-white">
-        Chit Chat
-      </h1>
-      <p
-        class="mt-4 text-center text-lg font-semibold leading-relaxed tracking-wider text-gray-300">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. In maiores
-        sint ex tempore officia molestiae recusandae molestias? Porro, culpa ex?
-      </p>
-    </div>
+    <ChitChat />
   </div>
 </div>
 
