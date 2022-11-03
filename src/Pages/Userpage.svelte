@@ -1,9 +1,10 @@
 <script>
   import { createEventDispatcher, onMount } from "svelte"
-  import Chatpage from "../components/Chatpage.svelte"
-  import Socialmedia from "../components/socialmedia.svelte"
   import axios from "axios"
   import io from "socket.io-client"
+  import Chatpage from "../components/Chatpage.svelte"
+  import Socialmedia from "../components/socialmedia.svelte"
+  import Existchatroom from "../components/Existchatroom.svelte"
   const dispatch = createEventDispatcher()
   export let userinfo
   let data = false
@@ -95,20 +96,8 @@
 
   {#if show}
     <div class="mx-10 mt-7 flex flex-col gap-5 md:flex-row">
-      <div
-        class="order-2 w-full rounded-lg bg-slate-200 p-4 md:order-none md:w-1/2">
-        <!--Existing Chatrooms-->
-        <h1 class="text-xl font-semibold text-slate-700">Existing Chatrooms</h1>
-        <div class="mt-4">
-          {#each existingroom as newroom}
-            <div class="mb-2 w-1/2 rounded-lg bg-slate-300 p-2">
-              <h1 class="text-xl font-semibold text-slate-700">
-                {newroom.room}
-              </h1>
-            </div>
-          {/each}
-        </div>
-      </div>
+      <!--Existing Chatrooms-->
+      <Existchatroom {existingroom} />
 
       <!--Second Content-->
       <div class="order-1 flex w-full flex-col gap-6 md:order-none md:w-1/2">
@@ -162,9 +151,3 @@
     <Chatpage {userinfo} {joinroom} {socket} on:leftchat={leftchat} />
   {/if}
 </div>
-<!-- 
-{#if show}
-  <Createchatroom {userinfo} on:display={joinoption} />
-{:else}
-  <Chatpage {userinfo} {joinchat} {socket} />
-{/if} -->
