@@ -44,7 +44,9 @@
           type="text"
           id="user"
           class="mt-2 mb-1  w-full  rounded border border-gray-300 bg-white py-1 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
+
         <h1 class="text-base font-semibold text-rose-500">{error}</h1>
+
         <label for="Color" class="text-xl font-semibold text-slate-800"
           >Color</label>
         <select
@@ -80,8 +82,14 @@
   </div>
 </div>
 
-<style>
-  :global .background {
+<style global>
+  .background {
     background-image: url("https://cdn.dribbble.com/users/1162077/screenshots/4318436/media/1e17490dd92ca27c4a6274ab7bff5b11.png?compress=1&resize=400x300");
+  }
+  option {
+    font-family: "Acme";
+  }
+  select {
+    font-family: "Acme";
   }
 </style>

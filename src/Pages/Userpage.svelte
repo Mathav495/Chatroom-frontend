@@ -151,3 +151,18 @@
     <Chatpage {userinfo} {joinroom} {socket} on:leftchat={leftchat} />
   {/if}
 </div>
+
+<style global>
+  h1 {
+    font-family: "Acme";
+  }
+  button {
+    font-family: "Acme";
+  }
+  input {
+    font-family: "Acme";
+  }
+  label {
+    font-family: "Acme";
+  }
+</style>
