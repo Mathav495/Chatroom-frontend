@@ -20,7 +20,7 @@
   const joinoption = async () => {
     console.log(joinroom)
     socket.emit("join_room", joinroom)
-    if (joinroom == null) {
+    if (joinroom == "") {
       errorjoin = "Enter the correct chatroom name"
       console.log(errorjoin)
     } else {
