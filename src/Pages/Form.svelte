@@ -9,6 +9,7 @@
     disabled = false,
     error = ""
 
+  //passing the userdata to the backend
   const adduserdata = async () => {
     if (username == null) {
       error = "Username cannot be empty"

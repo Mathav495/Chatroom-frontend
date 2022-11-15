@@ -5,7 +5,7 @@
     viewBox="0 0 24 24"
     stroke-width="1.5"
     stroke="currentColor"
-    class="ml-3 h-10 w-10  fill-gray-300">
+    class="ml-3 h-8 w-8 fill-gray-300 md:h-10  md:w-10">
     <path
       stroke-linecap="round"
       stroke-linejoin="round"

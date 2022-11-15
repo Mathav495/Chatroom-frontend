@@ -45,8 +45,7 @@
 
 <Chatbox {userinfo} {msglist} />
 
-<div
-  class="mx-10 mt-5 mb-2 flex w-full items-center gap-2 rounded-lg lg:gap-6 ">
+<div class="mx-5 mt-5 mb-2 flex w-full items-center gap-1 rounded-lg lg:gap-6 ">
   <Leftbutton on:click={() => dispatch("leftchat")} />
 
   <div class="hidden w-1/5 rounded-full bg-slate-300 p-3  lg:flex">
